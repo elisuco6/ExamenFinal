@@ -1,4 +1,5 @@
-package Examen;
+package Examen.Ejercicio2;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,20 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-/**
- * Pre: ---
- * Post: En el metodo main mandamos al metodo leerFichero nuestra ruta
- */
 public class ejercicio2 {
     public static void main(String[] args) {
         leerFichero("C:\\Users\\elisa\\Desktop\\Divorcios.csv");
     }
 
-    /**
-     * Pre: ---
-     * Post: leemos el fichero mandado y lo spliteamos en este caso por ";" posteriormente
-     *
-     */
     public static void leerFichero(String fichero) {
         File file = new File(fichero);
         ArrayList<Tupla> natList = new ArrayList<Tupla>();
@@ -33,34 +25,39 @@ public class ejercicio2 {
             while (f.hasNextLine()) {
                 String next = f.nextLine();
                 String acidentality = next.split(";")[2].replace("\"", "").trim();
-                String con = next.split(";")[1].replace("\"", "").trim();
-                insertAccidentality(natList, acidentality, con);
+                String totales = next.split(";")[3];
+                insertAccidentality(natList, acidentality,totales);
             }
+
             Collections.sort(natList);
-            for (int i =0; i<natList.size();i++) {
-                if (natList.get(i).getAccidentality().equalsIgnoreCase("2019")){
-                    System.out.println("Año: " + natList.get(i).getAccidentality() + " -> "
-                            + natList.get(i).getOccurrences() + " separaciones"
-                            + " con: " + natList.get(i).getCon());
-                }
+            for (int i = 0; i < natList.size(); i++) {
+                if (natList.get(i).getAccidentality().equalsIgnoreCase("2019"))
+                    System.out.println("Nat: " + natList.get(i).getAccidentality() + " -> " +
+                            natList.get(i).getOccurrences() + " registros de divorcio");
+                if (natList.get(i).getAccidentality().equalsIgnoreCase("2018"))
+                    System.out.println("Nat: " + natList.get(i).getAccidentality() + " -> " +
+                            natList.get(i).getOccurrences() + " registros de divorcio");
             }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void insertAccidentality(ArrayList<Tupla> natList, String accidentality, String con) {
+    public static void insertAccidentality(ArrayList<Tupla> natList, String accidentality, String totales) {
         if (natList.size() == 0) {
-            natList.add(new Tupla(accidentality, 1, con));
+            natList.add(new Tupla(accidentality, 1));
         } else {
             boolean find = false;
             for (int i = 0; i < natList.size(); i++) {
-                if (natList.get(i).getAccidentality().equalsIgnoreCase(natList.get(i).getAccidentality())) {
-                    natList.get(i).setOccurrences(natList.get(i).getOccurrences());
+                if (natList.get(i).getAccidentality().equalsIgnoreCase(accidentality)) {
+                    natList.get(i).setOccurrences(natList.get(i).getOccurrences() + 1);
+                    find = true;
+                    break;
                 }
             }
             if (!find) {
-                natList.add(new Tupla(accidentality, 1, con));
+                natList.add(new Tupla(accidentality, 1));
             }
         }
     }

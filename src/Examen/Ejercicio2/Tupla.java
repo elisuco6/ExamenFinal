@@ -1,18 +1,16 @@
-package Examen;
+package Examen.Ejercicio2;
 
 public class Tupla implements Comparable {
 	private String accidentality;
 	private int occurrences;
-	private String con;
 	
 	public Tupla() {
 		
 	}
-	
-	public Tupla(String accidentality, int occurrences, String con) {
+
+	public Tupla(String accidentality, int occurrences) {
 		this.accidentality = accidentality;
 		this.occurrences = occurrences;
-		this.con = con;
 	}
 
 	public String getAccidentality() {
@@ -31,13 +29,6 @@ public class Tupla implements Comparable {
 		this.occurrences = occurrences;
 	}
 
-	public String getCon() {
-		return con;
-	}
-
-	public void setCon(String con) {
-		this.con = con;
-	}
 
 	@Override
 	public int compareTo(Object o) {
