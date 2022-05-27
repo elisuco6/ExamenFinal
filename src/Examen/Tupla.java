@@ -3,7 +3,6 @@ package Examen;
 public class Tupla implements Comparable {
 	private String accidentality;
 	private int occurrences;
-
 	private String con;
 	
 	public Tupla() {

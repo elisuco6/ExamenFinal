@@ -15,6 +15,11 @@ public class ejercicio2 {
         leerFichero("C:\\Users\\elisa\\Desktop\\Divorcios.csv");
     }
 
+    /**
+     * Pre: ---
+     * Post: leemos el fichero mandado y lo spliteamos en este caso por ";" posteriormente
+     *
+     */
     public static void leerFichero(String fichero) {
         File file = new File(fichero);
         ArrayList<Tupla> natList = new ArrayList<Tupla>();
@@ -28,36 +33,34 @@ public class ejercicio2 {
             while (f.hasNextLine()) {
                 String next = f.nextLine();
                 String acidentality = next.split(";")[2].replace("\"", "").trim();
-                String con = next.split(";")[1].replace("\"","").trim();
+                String con = next.split(";")[1].replace("\"", "").trim();
                 insertAccidentality(natList, acidentality, con);
             }
             Collections.sort(natList);
-            for (Tupla t : natList) {
-                System.out.println("Año: " + t.getAccidentality() + " -> " + t.getOccurrences() + " separaciones"
-                        + " con: " + t.getCon());
+            for (int i =0; i<natList.size();i++) {
+                if (natList.get(i).getAccidentality().equalsIgnoreCase("2019")){
+                    System.out.println("Año: " + natList.get(i).getAccidentality() + " -> "
+                            + natList.get(i).getOccurrences() + " separaciones"
+                            + " con: " + natList.get(i).getCon());
+                }
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void insertAccidentality(ArrayList<Tupla> natList, String accidentality,String con) {
+    public static void insertAccidentality(ArrayList<Tupla> natList, String accidentality, String con) {
         if (natList.size() == 0) {
             natList.add(new Tupla(accidentality, 1, con));
         } else {
             boolean find = false;
             for (int i = 0; i < natList.size(); i++) {
-                int contador = 0;
                 if (natList.get(i).getAccidentality().equalsIgnoreCase(natList.get(i).getAccidentality())) {
-                    natList.get(i).setAccidentality(natList.get(i).getAccidentality());
-                    contador++;
-                    find = true;
-                    System.out.println(contador);
-                    break;
+                    natList.get(i).setOccurrences(natList.get(i).getOccurrences());
                 }
             }
             if (!find) {
-                natList.add(new Tupla(accidentality, 1,con));
+                natList.add(new Tupla(accidentality, 1, con));
             }
         }
     }
