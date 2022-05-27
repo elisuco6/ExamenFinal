@@ -1,5 +1,11 @@
 package Examen.Ejercicio2;
 
+/**
+ * pre:---
+ * Post: Esta clase nos permite almacenar datos de diferente tipo en este caso creamos accidentality
+ * 		que nos permite almacenar un string y occurrences un enetero de este modo podremos posteriormente
+ * 		sumar con el.
+ */
 public class Tupla implements Comparable {
 	private String accidentality;
 	private int occurrences;
@@ -29,7 +35,11 @@ public class Tupla implements Comparable {
 		this.occurrences = occurrences;
 	}
 
-
+	/**
+	 * Pre: ---
+	 * Post: En esta clase comparamos los objetos para asi poder ordenarlos de mayor a menor en este
+	 * 		caso.
+	 */
 	@Override
 	public int compareTo(Object o) {
 		Tupla t = (Tupla) o;
