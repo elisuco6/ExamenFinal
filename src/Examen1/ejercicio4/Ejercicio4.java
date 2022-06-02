@@ -1,4 +1,4 @@
-package Examen.Ejercicio4;
+package Examen1.ejercicio4;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ import java.util.Scanner;
  *      pantalla la tabla de multiplicar (únicamente de los multiplicadores pares) del
  *      número solicitado (hasta multiplicar por 100).
  */
-public class ejercicio4 {
+public class Ejercicio4 {
 
     /**
      * Pre: ---
