@@ -19,7 +19,7 @@ public class Ejercicio4 {
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Introduce la tabla que quieres mostrar: ");
+        System.out.print("Introduce numero para la su tabla de multiplicar: ");
         int tabla = entrada.nextInt();
         int numVeces = 100;
         System.out.println("\n\tTabla del " + tabla);
